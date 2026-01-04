@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "preact/hooks"
 
+const base = import.meta.env.BASE_URL;
+
 function loadScript(src: string): Promise<HTMLScriptElement> {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script')
@@ -21,9 +23,9 @@ export default function Wallpaper() {
 
       (async () => {
         try {
-          const threeScript = await loadScript('/js/three.min.js')
-          const guiScript = await loadScript('/js/dat.gui.min.js')
-          const customScript = await loadScript('/js/script.js')
+          const threeScript = await loadScript(`${base}js/three.min.js`);
+          const guiScript   = await loadScript(`${base}js/dat.gui.min.js`);
+          const customScript= await loadScript(`${base}js/script.js`);
 
           if (!mounted) return
 
